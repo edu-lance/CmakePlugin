@@ -14,7 +14,8 @@ public class CmakeElementType extends IElementType {
     public static final  String TYPE_LINESEPARATOR = "LineSeparator";
     public static final  String TYPE_REQUIRED = "CmakeRequired";
     public static final  String TYPE_VERSION = "CmakeVersion";
-    public static final  String TYPE_INCLUDE_DIRECTORIES = "CmakeIncludeDirectories";
+    public static final  String TYPE_VERSION_NUMBER = "CmakeVersionNumber";
+    public static final  String TYPE_UNKNOW = "UnKonw";
 
 
     private String debugName;
@@ -35,8 +36,8 @@ public class CmakeElementType extends IElementType {
         return value == null ? "" : "(" + value + ")";
     }
 
-//    @Override
-//    public String toString() {
-//        return debugName + getValue();
-//    }
+    @Override
+    public String toString() {
+        return debugName + getValue();
+    }
 }

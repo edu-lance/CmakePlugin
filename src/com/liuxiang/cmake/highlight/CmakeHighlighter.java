@@ -33,8 +33,7 @@ public class CmakeHighlighter extends SyntaxHighlighterBase {
             case CmakeElementType.TYPE_REQUIRED:
             case CmakeElementType.TYPE_VERSION:
                 return new TextAttributesKey[]{DefaultLanguageHighlighterColors.KEYWORD};
-            case CmakeElementType.TYPE_INCLUDE_DIRECTORIES:
-                return new TextAttributesKey[]{DefaultLanguageHighlighterColors.FUNCTION_CALL};
+
         }
         return new TextAttributesKey[0];
     }

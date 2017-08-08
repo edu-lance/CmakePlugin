@@ -22,6 +22,8 @@ class _CmakeSpecLexer implements FlexLexer {
 
   /** lexical states */
   public static final int YYINITIAL = 0;
+  public static final int $CmakeRequiredHead = 2;
+  public static final int $CmakeVersion = 4;
 
   /**
    * ZZ_LEXSTATE[l] is the state in the DFA for the lexical state l
@@ -30,31 +32,32 @@ class _CmakeSpecLexer implements FlexLexer {
    * l is of the form l = 2*k, k a non negative integer
    */
   private static final int ZZ_LEXSTATE[] = { 
-     0, 0
+     0,  0,  1,  1,  1, 1
   };
 
   /** 
    * Translates characters to character classes
-   * Chosen bits are [9, 6, 6]
-   * Total runtime size is 1568 bytes
+   * Chosen bits are [7, 7, 7]
+   * Total runtime size is 1928 bytes
    */
   public static int ZZ_CMAP(int ch) {
-    return ZZ_CMAP_A[(ZZ_CMAP_Y[ZZ_CMAP_Z[ch>>12]|((ch>>6)&0x3f)]<<6)|(ch&0x3f)];
+    return ZZ_CMAP_A[(ZZ_CMAP_Y[ZZ_CMAP_Z[ch>>14]|((ch>>7)&0x7f)]<<7)|(ch&0x7f)];
   }
 
-  /* The ZZ_CMAP_Z table has 272 entries */
+  /* The ZZ_CMAP_Z table has 68 entries */
   static final char ZZ_CMAP_Z[] = zzUnpackCMap(
-    "\1\0\1\100\1\200\u010d\100");
+    "\1\0\103\200");
 
-  /* The ZZ_CMAP_Y table has 192 entries */
+  /* The ZZ_CMAP_Y table has 256 entries */
   static final char ZZ_CMAP_Y[] = zzUnpackCMap(
-    "\1\0\1\1\1\2\175\3\1\4\77\3");
+    "\1\0\1\1\53\2\1\3\22\2\1\4\37\2\1\3\237\2");
 
-  /* The ZZ_CMAP_A table has 320 entries */
+  /* The ZZ_CMAP_A table has 640 entries */
   static final char ZZ_CMAP_A[] = zzUnpackCMap(
-    "\12\0\1\2\2\4\1\3\25\0\1\1\41\0\1\22\3\0\1\25\4\0\1\27\1\26\2\0\1\23\1\24"+
-    "\2\0\1\21\10\0\1\12\1\0\1\7\1\0\1\5\1\20\1\11\3\0\1\13\1\0\1\10\1\30\1\6\1"+
-    "\14\1\32\1\0\1\17\1\16\1\33\1\31\1\15\17\0\1\4\242\0\2\4\26\0");
+    "\11\0\1\5\1\2\2\4\1\3\22\0\1\5\2\0\1\1\41\0\1\23\3\0\1\26\4\0\1\30\1\27\2"+
+    "\0\1\24\1\25\2\0\1\22\10\0\1\13\1\0\1\10\1\0\1\6\1\21\1\12\3\0\1\14\1\0\1"+
+    "\11\1\0\1\7\1\15\2\0\1\20\1\17\2\0\1\16\17\0\1\4\32\0\1\5\337\0\1\5\177\0"+
+    "\13\5\35\0\2\4\5\0\1\5\57\0\1\5\40\0");
 
   /** 
    * Translates DFA states to action switch labels.
@@ -62,11 +65,11 @@ class _CmakeSpecLexer implements FlexLexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\2\2\24\0\1\3\27\0\1\4\2\0"+
-    "\1\5";
+    "\2\0\1\1\1\2\2\3\1\0\3\1\15\0\1\4"+
+    "\1\0\1\4\15\0\1\5";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[52];
+    int [] result = new int[40];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -91,16 +94,14 @@ class _CmakeSpecLexer implements FlexLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\34\0\70\0\124\0\160\0\214\0\250\0\304"+
-    "\0\340\0\374\0\u0118\0\u0134\0\u0150\0\u016c\0\u0188\0\u01a4"+
-    "\0\u01c0\0\u01dc\0\u01f8\0\u0214\0\u0230\0\u024c\0\u0268\0\u0284"+
-    "\0\70\0\u02a0\0\u02bc\0\u02d8\0\u02f4\0\u0310\0\u032c\0\u0348"+
-    "\0\u0364\0\u0380\0\u039c\0\u03b8\0\u03d4\0\u03f0\0\u040c\0\u0428"+
-    "\0\u0444\0\u0460\0\u047c\0\u0498\0\u04b4\0\u04d0\0\u04ec\0\u0508"+
-    "\0\70\0\u0524\0\u0540\0\70";
+    "\0\0\0\31\0\31\0\62\0\113\0\144\0\113\0\113"+
+    "\0\175\0\226\0\175\0\226\0\257\0\310\0\341\0\372"+
+    "\0\u0113\0\u012c\0\u0145\0\u015e\0\u0177\0\u0190\0\u01a9\0\u01c2"+
+    "\0\u01db\0\u01f4\0\u020d\0\u0226\0\u023f\0\u0258\0\u0271\0\u028a"+
+    "\0\u02a3\0\u02bc\0\u02d5\0\u02ee\0\u0307\0\u0320\0\u0339\0\31";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[52];
+    int [] result = new int[40];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -123,23 +124,20 @@ class _CmakeSpecLexer implements FlexLexer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\0\1\2\1\3\1\4\1\0\1\5\5\0\1\6"+
-    "\5\0\1\7\12\0\2\2\3\0\27\2\36\0\1\3"+
-    "\37\0\1\10\41\0\1\11\41\0\1\12\20\0\1\13"+
-    "\31\0\1\14\51\0\1\15\20\0\1\16\53\0\1\17"+
-    "\27\0\1\20\20\0\1\21\37\0\1\22\43\0\1\23"+
-    "\20\0\1\24\41\0\1\25\41\0\1\26\13\0\1\27"+
-    "\36\0\1\30\51\0\1\31\17\0\1\32\32\0\1\33"+
-    "\35\0\1\34\37\0\1\35\26\0\1\36\33\0\1\37"+
-    "\26\0\1\40\43\0\1\41\32\0\1\42\27\0\1\43"+
-    "\30\0\1\44\32\0\1\45\40\0\1\46\52\0\1\47"+
-    "\20\0\1\50\47\0\1\51\12\0\1\52\40\0\1\53"+
-    "\34\0\1\54\27\0\1\55\35\0\1\56\27\0\1\57"+
-    "\35\0\1\60\53\0\1\61\16\0\1\62\26\0\1\63"+
-    "\42\0\1\64\13\0";
+    "\1\3\1\4\1\5\1\6\1\7\1\10\1\11\13\3"+
+    "\1\12\6\3\31\0\2\4\3\0\24\4\2\0\4\7"+
+    "\1\13\13\0\1\14\10\0\1\5\3\7\1\13\13\0"+
+    "\1\14\15\0\1\15\44\0\1\16\15\0\1\17\44\0"+
+    "\1\20\15\0\1\21\44\0\1\22\15\0\1\23\44\0"+
+    "\1\24\15\0\1\25\44\0\1\26\10\0\1\27\51\0"+
+    "\1\30\14\0\1\31\16\0\4\32\14\0\1\14\23\0"+
+    "\1\33\15\0\4\32\37\0\1\34\23\0\1\35\37\0"+
+    "\1\36\21\0\1\37\34\0\1\40\34\0\1\41\23\0"+
+    "\1\42\36\0\1\43\26\0\1\44\26\0\1\45\33\0"+
+    "\1\46\23\0\1\47\37\0\1\50\7\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[1372];
+    int [] result = new int[850];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -177,11 +175,11 @@ class _CmakeSpecLexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\1\1\11\1\1\24\0\1\11\27\0\1\11"+
-    "\2\0\1\11";
+    "\1\0\1\10\1\11\3\1\1\0\3\1\15\0\1\1"+
+    "\1\0\1\1\15\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[52];
+    int [] result = new int[40];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -487,19 +485,19 @@ private String matchedText() {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { return new CmakeElementType(CmakeElementType.TYPE_COMMENT,matchedText(),CmakeLanguage.CMAKE);
+            { yybegin($CmakeVersion);return new CmakeElementType(CmakeElementType.TYPE_UNKNOW,CmakeLanguage.CMAKE);
             }
           case 6: break;
           case 2: 
-            { return new CmakeElementType(CmakeElementType.TYPE_LINESEPARATOR,CmakeLanguage.CMAKE);
+            { return new CmakeElementType(CmakeElementType.TYPE_COMMENT,matchedText(),CmakeLanguage.CMAKE);
             }
           case 7: break;
           case 3: 
-            { return new CmakeElementType(CmakeElementType.TYPE_VERSION,CmakeLanguage.CMAKE);
+            { return new CmakeElementType(CmakeElementType.TYPE_LINESEPARATOR,CmakeLanguage.CMAKE);
             }
           case 8: break;
           case 4: 
-            { return new CmakeElementType(CmakeElementType.TYPE_INCLUDE_DIRECTORIES,CmakeLanguage.CMAKE);
+            { yybegin($CmakeRequiredHead);return new CmakeElementType(CmakeElementType.TYPE_VERSION,CmakeLanguage.CMAKE);
             }
           case 9: break;
           case 5: 

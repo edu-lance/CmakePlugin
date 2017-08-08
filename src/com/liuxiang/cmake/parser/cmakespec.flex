@@ -19,17 +19,22 @@ private String matchedText() {
 
 Comment = "#" .*
 LineSeparator = \r\n | \r | \n
-CmakeRequired = "cmake_minimum_required"
-CmakeVersion = "VERSION"
-CmakeIncludeDirectories = "include_directories"
+WhiteSpace = \s*
+CmakeRequired = {WhiteSpace}+ "cmake_minimum_required"
+CmakeRequiredHead = {CmakeRequired}+{WhiteSpace}+"("
+CmakeVersion = {WhiteSpace}+"VERSION"+{WhiteSpace}
 
+%state $CmakeRequiredHead
+%state $CmakeVersion
 
 %%
-
+<YYINITIAL> {
 {Comment}          { return new CmakeElementType(CmakeElementType.TYPE_COMMENT,matchedText(),CmakeLanguage.CMAKE); }
 {LineSeparator}    { return new CmakeElementType(CmakeElementType.TYPE_LINESEPARATOR,CmakeLanguage.CMAKE); }
 {CmakeRequired}    { return new CmakeElementType(CmakeElementType.TYPE_REQUIRED,CmakeLanguage.CMAKE); }
-{CmakeVersion} { return new CmakeElementType(CmakeElementType.TYPE_VERSION,CmakeLanguage.CMAKE); }
-{CmakeIncludeDirectories} { return new CmakeElementType(CmakeElementType.TYPE_INCLUDE_DIRECTORIES,CmakeLanguage.CMAKE); }
+{CmakeVersion} { yybegin($CmakeRequiredHead);return new CmakeElementType(CmakeElementType.TYPE_VERSION,CmakeLanguage.CMAKE); }
+.   { return new CmakeElementType(CmakeElementType.TYPE_UNKNOW,CmakeLanguage.CMAKE); }
+}
+
 
 
