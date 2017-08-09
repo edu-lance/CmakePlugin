@@ -27,7 +27,9 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <fileTypeFactory implementation="com.liuxiang.cmake.CmakeFileTypeFactory"/>
-        <lang.syntaxHighlighterFactory language="cmake" implementationClass="com.liuxiang.cmake.highlight.CmakeHighlighterFactory"/>
+        <lang.syntaxHighlighterFactory language="cmake" implementationClass="com.liuxiang.cmake.color.CmakeSyntaxHighlighterFactory"/>
+        <!--<lang.parserDefinition language="cmake" implementationClass="com.liuxiang.cmake.parser.CmakeParserDefinition"/>-->
+        <colorSettingsPage implementation="com.liuxiang.cmake.color.CmakeColorSettingsPage"/>
     </extensions>
 
     <actions>

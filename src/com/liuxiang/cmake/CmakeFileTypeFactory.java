@@ -1,5 +1,6 @@
 package com.liuxiang.cmake;
 
+import com.intellij.lexer.Lexer;
 import com.intellij.openapi.fileTypes.FileNameMatcher;
 import com.intellij.openapi.fileTypes.FileTypeConsumer;
 import com.intellij.openapi.fileTypes.FileTypeFactory;
@@ -12,7 +13,7 @@ public class CmakeFileTypeFactory extends FileTypeFactory {
     static final String CMAKE_FILE_NAME = "CMakeLists.txt";
     @Override
     public void createFileTypes(@NotNull FileTypeConsumer fileTypeConsumer) {
-        fileTypeConsumer.consume(new CmakeFileType(CmakeLanguage.CMAKE), new FileNameMatcher() {
+        fileTypeConsumer.consume(CmakeFileType.INSTANCE, new FileNameMatcher() {
             @Override
             public boolean accept(@NotNull String s) {
                 return s.equals(CMAKE_FILE_NAME);

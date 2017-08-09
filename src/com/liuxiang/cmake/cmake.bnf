@@ -1,0 +1,32 @@
+{
+  parserClass="com.liuxiang.cmake.parser.CmakeParser"
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Cmake"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.liuxiang.cmake.psi"
+  psiImplPackage="com.liuxiang.cmake.psi.impl"
+
+  elementTypeHolderClass="com.liuxiang.cmake.psi.CmakeTypes"
+  elementTypeClass="com.liuxiang.cmake.psi.CmakeElementType"
+  tokenTypeClass="com.liuxiang.cmake.psi.CmakeTokenType"
+
+  psiImplUtilClass="com.liuxiang.cmake.psi.impl.CmakePsiImplUtil"
+}
+
+
+cmakeFile ::= (method|COMMENT)*
+
+method ::= KEY
+
+
+
+
+
+
+
+
+
+
+
+

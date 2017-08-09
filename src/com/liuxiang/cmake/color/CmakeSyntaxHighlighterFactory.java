@@ -1,4 +1,4 @@
-package com.liuxiang.cmake.highlight;
+package com.liuxiang.cmake.color;
 
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterFactory;
@@ -8,12 +8,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Created by xiang on 2017/8/6.
+ * Created by xiang on 2017/8/9.
  */
-public class CmakeHighlighterFactory extends SyntaxHighlighterFactory {
+public class CmakeSyntaxHighlighterFactory extends SyntaxHighlighterFactory {
     @NotNull
     @Override
     public SyntaxHighlighter getSyntaxHighlighter(@Nullable Project project, @Nullable VirtualFile virtualFile) {
-        return new CmakeHighlighter();
+        return new CmakeSyntaxHighlighter();
     }
 }

@@ -8,9 +8,9 @@ import org.jetbrains.annotations.NotNull;
  */
 public class CmakeLanguage extends Language {
 
-    public static CmakeLanguage CMAKE = new CmakeLanguage("cmake");
+    public static CmakeLanguage INSTANCE = new CmakeLanguage();
 
-    protected CmakeLanguage(@NotNull String ID) {
-        super(ID);
+    protected CmakeLanguage() {
+        super("cmake");
     }
 }

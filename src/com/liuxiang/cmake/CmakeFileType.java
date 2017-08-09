@@ -4,6 +4,7 @@ package com.liuxiang.cmake;
 import com.intellij.lang.Language;
 import com.intellij.openapi.fileTypes.LanguageFileType;
 import com.intellij.openapi.util.IconLoader;
+import com.liuxiang.cmake.icon.CmakeIcon;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,20 +15,22 @@ import javax.swing.*;
  */
 public class CmakeFileType extends LanguageFileType {
 
-    protected CmakeFileType(@NotNull Language language) {
-        super(language);
+    public static CmakeFileType INSTANCE = new CmakeFileType();
+
+    protected CmakeFileType() {
+        super(CmakeLanguage.INSTANCE);
     }
 
     @NotNull
     @Override
     public String getName() {
-        return "cmake";
+        return "Cmake file";
     }
 
     @NotNull
     @Override
     public String getDescription() {
-        return "cmake file";
+        return "Cmake configuration file";
     }
 
     @NotNull
@@ -39,6 +42,6 @@ public class CmakeFileType extends LanguageFileType {
     @Nullable
     @Override
     public Icon getIcon() {
-        return IconLoader.getIcon("/com/liuxiang/cmake/icon.png");
+        return CmakeIcon.ICON;
     }
 }
